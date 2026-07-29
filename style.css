@@ -219,6 +219,7 @@ html{
     white-space:nowrap}
 .why{
     background:var(--black);
+    opacity: 0.98;
     color:#fff;
     display:grid;
     grid-template-columns:1fr 1fr;
@@ -226,7 +227,7 @@ html{
     align-items:center}
 .why-image{
     height:580px;
-    background:url('https://images.unsplash.com/photo-1524250502761-1ac6f2e30d43?auto=format&fit=crop&w=900&q=85') 
+    background:url('IMG_2776.PNG') 
     center/cover}
 .why-copy>p:not(.kicker){color:#b9b4ad;
     line-height:1.8;max-width:480px;
@@ -293,7 +294,7 @@ html{
     margin:0}
 .gallery-grid img{
     width:100%;
-    height:390px;
+    height:490px;
     object-fit:cover;
     display:block;
     filter:saturate(.8)}
@@ -478,7 +479,7 @@ html{
     .nav{
         gap:12px}
     .product-grid{
-        grid-template-columns:repeat(2,1fr)}
+        grid-template-columns:repeat(1fr)}
     .product-card img{
         height:360px}
     .hero-image{
@@ -560,11 +561,11 @@ html{
         .service-grid{
             grid-template-columns:1fr}
         .gallery-grid{
-            grid-template-columns:1fr 1fr}
+            grid-template-columns:1fr }
         .gallery-grid .gallery-large{
-            grid-column:span 2}
+            grid-column:span 1}
         .gallery-grid img,.gallery-grid .gallery-large img{
-            height:300px}
+            height:420px}
         .contact{
             display:block}
         .contact-form{

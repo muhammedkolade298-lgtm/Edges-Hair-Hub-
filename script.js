@@ -1,9 +1,9 @@
 // Product data can be replaced with inventory from a backend later.
 const products = [
-  {name:'The Sade', type:'13x4 HD Lace Frontal', price:'₦285,000', image:'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=700&q=85'},
-  {name:'The Maya', type:'Bone Straight • 24 inch', price:'₦320,000', image:'https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?auto=format&fit=crop&w=700&q=85'},
-  {name:'The Zuri', type:'Deep Wave • 20 inch', price:'₦260,000', image:'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=700&q=85'},
-  {name:'The Nia', type:'Pixie Cut • Glueless', price:'₦180,000', image:'https://images.unsplash.com/photo-1524250502761-1ac6f2e30d43?auto=format&fit=crop&w=700&q=85'}
+  {name:'The Ololade Wig', type:'13x4 HD Lace Frontal Wig', price:'₦110,000', image:'AFFO3104.WEBP'},
+  {name:'The Mariam', type:'Bone Straight • 24 inch', price:'₦150,000', image:'TAP.JPG'},
+  {name:'The Zainab', type:'Deep Wave • 20 inch', price:'₦90,000', image:'WASH.JPG'},
+  {name:'The Larry Baby', type:'Pixie Cut • Glueless', price:'₦80,000', image:'amer.webp'}
 ];
 const productGrid = document.querySelector('#productGrid');
 productGrid.innerHTML = products.map((product, index) => `<article class="product-card reveal"><img src="${product.image}" alt="${product.name} ${product.type}" loading="lazy"><div class="product-meta"><div><h3>${product.name}</h3><p>${product.type}</p></div><strong>${product.price}</strong></div></article>`).join('');
