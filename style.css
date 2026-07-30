@@ -197,7 +197,7 @@ html{
     transform:translateY(-8px);
     box-shadow:0 20px 40px #201d1a18}
 .product-card img{
-    width:100%;
+    width:90%;
     height:330px;
     object-fit:cover;
     display:block}
@@ -581,7 +581,7 @@ html{
         .product-grid{
             grid-template-columns:1fr}
         .product-card img{
-            height:330px}
+            height:420px}
         .gallery-grid{
             display:block}
         .gallery-grid figure{
