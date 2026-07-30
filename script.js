@@ -1,9 +1,9 @@
 // Product data can be replaced with inventory from a backend later.
 const products = [
-  {name:'The Ololade Wig', type:'13x4 HD Lace Frontal Wig', price:'₦110,000', image:'AFFO3104.WEBP'},
-  {name:'The Mariam', type:'Bone Straight • 24 inch', price:'₦150,000', image:'TAP.JPG'},
-  {name:'The Zainab', type:'Deep Wave • 20 inch', price:'₦90,000', image:'WASH.JPG'},
-  {name:'The Larry Baby', type:'Pixie Cut • Glueless', price:'₦80,000', image:'amer.webp'}
+  {name:'The Chioma Wig', type:'13x4 HD Lace Frontal Wig', price:'₦110,000', image:'AFFO3104.WEBP'},
+  {name:'The Mariam Wig', type:'Bone Straight • 24 inch', price:'₦150,000', image:'TAP.JPG'},
+  {name:'The Zainab Wig', type:'Deep Wave • 20 inch', price:'₦90,000', image:'WASH.JPG'},
+  {name:'The Onyere Wig', type:'Pixie Cut • Glueless', price:'₦80,000', image:'amer.webp'}
 ];
 const productGrid = document.querySelector('#productGrid');
 productGrid.innerHTML = products.map((product, index) => `<article class="product-card reveal"><img src="${product.image}" alt="${product.name} ${product.type}" loading="lazy"><div class="product-meta"><div><h3>${product.name}</h3><p>${product.type}</p></div><strong>${product.price}</strong></div></article>`).join('');
