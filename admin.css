@@ -710,7 +710,7 @@ img{display:block;}
   .sidebar.open{transform:translateX(0);}
   .mobile-only{display:flex;}
   .user-chip-text{display:none;}
-  .search{max-width:none;}
+  .search{max-width:none;display: none;}
 }
 
 @media (max-width:640px){
