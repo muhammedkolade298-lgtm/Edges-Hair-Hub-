@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edges Hair Hub  — Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="admin.css">
+
+</head>
+<body>
+
+<div class="app">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <span class="brand-mark">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 20V4l16 16V4" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      <span class="brand-name">Nova</span>
+      <button class="sidebar-toggle" id="sidebarToggle" aria-label="Collapse sidebar">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+
+    <nav class="nav">
+      <div class="nav-group-label">Overview</div>
+      <a class="nav-item active" href="#" data-page="dashboardPage">
+        <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="9" rx="2" stroke="currentColor" stroke-width="1.8"/><rect x="14" y="3" width="7" height="5" rx="2" stroke="currentColor" stroke-width="1.8"/><rect x="14" y="12" width="7" height="9" rx="2" stroke="currentColor" stroke-width="1.8"/><rect x="3" y="16" width="7" height="5" rx="2" stroke="currentColor" stroke-width="1.8"/></svg>
+        <span>Dashboard</span>
+        <span class="nav-badge">12</span>
+      </a>
+      <a class="nav-item" href="#inboxPage" data-page="inboxPage">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M4 4h16v12H7l-3 3V4z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+        <span>Inbox</span>
+        <span class="nav-dot"></span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a class="nav-item" href="#" id="sidebarLogoutBtn">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Log out</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <button class="icon-btn mobile-only" id="mobileMenuBtn" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+
+      <div class="search">
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <input id="topbarSearch" type="text" placeholder="Search anything…" aria-label="Search">
+        <span class="kbd">⌘K</span>
+      </div>
+
+      <div class="topbar-actions">
+        <button class="icon-btn" id="messagesBtn" aria-label="Messages">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 4h16v12H7l-3 3V4z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+          <span class="pip">3</span>
+        </button>
+        <button class="icon-btn" id="notificationsBtn" aria-label="Notifications">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M13.7 21a2 2 0 01-3.4 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <span class="pip pip-accent">1</span>
+        </button>
+        <div class="divider-v"></div>
+        <div class="user-chip" id="userChip" aria-haspopup="true" aria-expanded="false">
+          <img src="https://ui-avatars.com/api/?name=Priya+Sen&background=5B5FEF&color=fff&bold=true&size=64" alt="">
+          <div class="user-chip-text">
+            <span class="user-name">Priya Sen</span>
+            <span class="user-role">Product Designer</span>
+          </div>
+          <svg viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="user-menu" id="userMenu" aria-label="User menu">
+          <a href="#" data-page="profilePage">View profile</a>
+          <a href="#" data-page="settingsPage">Settings</a>
+          <button type="button" id="logoutBtn">Log out</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTENT -->
+    <div class="content">
+      <div id="dashboardPage" class="page-page">
+        <div class="page-head">
+          <div>
+            <h1>Welcome back, Priya</h1>
+            <p>Here's what's happening across your workspace today.</p>
+          </div>
+        </div>
+
+        <!-- STAT CARDS -->
+        <section class="stat-grid">
+
+        <article class="stat-card">
+          <div class="stat-top">
+            <span class="stat-icon icon-indigo">
+              <svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="1.8"/><path d="M3 20c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M16 8.2a3 3 0 010 5.8M20.5 20c0-2.6-1.8-4.6-4-5.3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            </span>
+            <span class="stat-trend up">+12.4%</span>
+          </div>
+          <span class="stat-value">3,542</span>
+          <span class="stat-label">New visitors</span>
+          <div class="spark" data-values="4,7,5,9,6,10,8,12,9,14,11,16"></div>
+        </article>
+
+        <article class="stat-card">
+          <div class="stat-top">
+            <span class="stat-icon icon-amber">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="12" r="3.2" stroke="currentColor" stroke-width="1.8"/></svg>
+            </span>
+            <span class="stat-trend down">−3.1%</span>
+          </div>
+          <span class="stat-value">60%</span>
+          <span class="stat-label">Bounce rate</span>
+          <div class="spark" data-values="12,10,13,9,11,8,10,7,9,6,8,6"></div>
+        </article>
+
+        <article class="stat-card">
+          <div class="stat-top">
+            <span class="stat-icon icon-coral">
+              <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            </span>
+            <span class="stat-trend up">+8.9%</span>
+          </div>
+          <span class="stat-value">1,204</span>
+          <span class="stat-label">Searches today</span>
+          <div class="spark" data-values="6,9,7,11,8,13,10,14,11,15,12,17"></div>
+        </article>
+
+        <article class="stat-card">
+          <div class="stat-top">
+            <span class="stat-icon icon-teal">
+              <svg viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="12" rx="9" ry="4.2" stroke="currentColor" stroke-width="1.8"/><path d="M3 12c0 2.3 4 4.2 9 4.2s9-1.9 9-4.2M3 8.6c0 2.3 4 4.2 9 4.2s9-1.9 9-4.2" stroke="currentColor" stroke-width="1.8"/></svg>
+            </span>
+            <span class="stat-trend up">+21.7%</span>
+          </div>
+          <span class="stat-value">120 KB</span>
+          <span class="stat-label">Traffic volume</span>
+          <div class="spark" data-values="5,8,6,10,9,13,10,15,13,17,14,18"></div>
+        </article>
+
+      </section>
+
+      <!-- CHART + PANEL -->
+      <section class="grid-2col">
+
+        <article class="panel chart-panel">
+          <div class="panel-head">
+            <div>
+              <h2>Visitor overview</h2>
+              <p>Recurring vs. unique traffic, last 7 months</p>
+            </div>
+            <div class="legend">
+              <span class="legend-item"><i class="dot dot-primary"></i>Recurrent</span>
+              <span class="legend-item"><i class="dot dot-sky"></i>Uniques</span>
+            </div>
+          </div>
+
+          <div class="chart-wrap">
+            <svg viewBox="0 0 720 320" class="area-chart" id="areaChart" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="gradPrimary" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#5B5FEF" stop-opacity="0.35"/>
+                  <stop offset="100%" stop-color="#5B5FEF" stop-opacity="0"/>
+                </linearGradient>
+                <linearGradient id="gradSky" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#3AA0FF" stop-opacity="0.45"/>
+                  <stop offset="100%" stop-color="#3AA0FF" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+
+              <!-- gridlines drawn via CSS background on wrapper -->
+
+              <path class="area-fill fill-sky" d="M0,300 L0,220 C40,200 80,260 120,240 C160,220 200,120 240,140 C280,160 320,260 360,230 C400,200 440,60 480,90 C520,120 560,230 600,200 C640,170 680,110 720,150 L720,300 Z"/>
+              <path class="area-line line-sky" d="M0,220 C40,200 80,260 120,240 C160,220 200,120 240,140 C280,160 320,260 360,230 C400,200 440,60 480,90 C520,120 560,230 600,200 C640,170 680,110 720,150"/>
+
+              <path class="area-fill fill-primary" d="M0,300 L0,240 C50,180 90,60 130,50 C170,40 210,220 250,240 C290,260 330,150 370,110 C410,70 450,40 490,60 C530,80 570,200 610,190 C650,180 690,230 720,250 L720,300 Z"/>
+              <path class="area-line line-primary" d="M0,240 C50,180 90,60 130,50 C170,40 210,220 250,240 C290,260 330,150 370,110 C410,70 450,40 490,60 C530,80 570,200 610,190 C650,180 690,230 720,250"/>
+            </svg>
+            <div class="chart-x-axis">
+              <span>Mar</span><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span>
+            </div>
+          </div>
+        </article>
+
+        <aside class="panel messages-panel">
+          <div class="panel-head">
+            <div>
+              <h2>Unread messages</h2>
+              <p>33 waiting for a reply</p>
+            </div>
+          </div>
+
+          <ul class="message-list">
+            <li class="message-item">
+              <img src="https://ui-avatars.com/api/?name=Mirchi+Rao&background=FF6B6B&color=fff&bold=true&size=64" alt="">
+              <div class="message-body">
+                <div class="message-top"><span class="message-name">Mirchi Rao</span><span class="message-time">2h</span></div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit…</p>
+              </div>
+              <span class="status-dot online"></span>
+            </li>
+            <li class="message-item">
+              <img src="https://ui-avatars.com/api/?name=Mohan+Iyer&background=3AA0FF&color=fff&bold=true&size=64" alt="">
+              <div class="message-body">
+                <div class="message-top"><span class="message-name">Mohan Iyer</span><span class="message-time">3h</span></div>
+                <p>Nunc sed ultrices ipsum. Maecenas euismod lectus vel semper…</p>
+              </div>
+              <span class="status-dot online"></span>
+            </li>
+            <li class="message-item">
+              <img src="https://ui-avatars.com/api/?name=Alex+Chen&background=FFB020&color=fff&bold=true&size=64" alt="">
+              <div class="message-body">
+                <div class="message-top"><span class="message-name">Alex Chen</span><span class="message-time">4h</span></div>
+                <p>Sed fringilla ac augue ut tincidunt. Curabitur iaculis nulla sit…</p>
+              </div>
+              <span class="status-dot"></span>
+            </li>
+            <li class="message-item">
+              <img src="https://ui-avatars.com/api/?name=Priya+Nair&background=00C2A8&color=fff&bold=true&size=64" alt="">
+              <div class="message-body">
+                <div class="message-top"><span class="message-name">Priya Nair</span><span class="message-time">4h</span></div>
+                <p>Donec eget dolor in leo cursus tristique. Praesent quis mattis…</p>
+              </div>
+              <span class="status-dot"></span>
+            </li>
+          </ul>
+
+          <div class="panel-actions">
+            <button class="link-btn">Read all</button>
+            <button class="link-btn muted">Dismiss all</button>
+          </div>
+        </aside>
+
+      </section>
+    </div>
+
+      <section id="inboxPage" class="page-page hidden">
+        <div class="page-head">
+          <div>
+            <h1>Inbox</h1>
+            <p>Review appointment requests submitted by clients.</p>
+          </div>
+        </div>
+
+        <div class="panel inbox-panel">
+          <div class="panel-head">
+            <div>
+              <h2>Appointment requests</h2>
+              <p id="inboxCount">Loading requests…</p>
+            </div>
+          </div>
+          <div id="inboxList" class="inbox-list">
+            <div class="inbox-empty">No appointment requests yet.</div>
+          </div>
+          <div class="panel-actions">
+            <button type="button" class="link-btn" id="inboxMarkAllRead">Mark all read</button>
+            <button type="button" class="link-btn muted" id="inboxClearAll">Clear all</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="profilePage" class="page-page hidden">
+        <div class="page-head">
+          <div>
+            <h1>Profile</h1>
+            <p>Manage your account details and contact information.</p>
+          </div>
+        </div>
+
+        <div class="panel profile-panel">
+          <div class="profile-card">
+            <img src="https://ui-avatars.com/api/?name=Priya+Sen&background=5B5FEF&color=fff&bold=true&size=128" alt="Profile avatar">
+            <div>
+              <h3 id="profileName">Priya Sen</h3>
+              <p id="profileRole">Product Designer</p>
+              <p id="profileEmail">priya@edgeshairhub.com</p>
+            </div>
+          </div>
+          <form id="profileForm" class="account-form">
+            <label>Name
+              <input type="text" name="name" required>
+            </label>
+            <label>Email
+              <input type="email" name="email" required>
+            </label>
+            <label>Role
+              <input type="text" name="role" readonly>
+            </label>
+            <label>Phone
+              <input type="tel" name="phone" placeholder="+234 906 427 9365">
+            </label>
+            <label>Studio location
+              <input type="text" name="location" placeholder="Lekki, Lagos">
+            </label>
+            <button class="button gold-button" type="submit">Save profile</button>
+            <p class="form-status" id="profileStatus"></p>
+          </form>
+        </div>
+      </section>
+
+      <section id="settingsPage" class="page-page hidden">
+        <div class="page-head">
+          <div>
+            <h1>Settings</h1>
+            <p>Set how you want to receive updates and alerts.</p>
+          </div>
+        </div>
+
+        <div class="panel settings-panel">
+          <form id="settingsForm" class="account-form">
+            <label class="checkbox-label">
+              <span>Receive email alerts for new appointments</span>
+              <input type="checkbox" name="emailAlerts">
+            </label>
+            <label class="checkbox-label">
+              <span>Receive SMS booking notifications</span>
+              <input type="checkbox" name="smsAlerts">
+            </label>
+            <label class="checkbox-label">
+              <span>Dark mode</span>
+              <input type="checkbox" name="darkMode">
+            </label>
+            <button class="button gold-button" type="submit">Save settings</button>
+            <p class="form-status" id="settingsStatus"></p>
+          </form>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<!-- CHAT WIDGET -->
+<div class="chat-widget" id="chatWidget">
+  <button class="chat-bubble" id="chatToggle" aria-label="Open assistant">
+    <svg viewBox="0 0 24 24" fill="none"><path d="M21 12c0 4.4-4 8-9 8-1.1 0-2.2-.2-3.1-.5L3 21l1.6-4.3A7.7 7.7 0 013 12c0-4.4 4-8 9-8s9 3.6 9 8z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+  </button>
+  <div class="chat-panel" id="chatPanel">
+    <div class="chat-panel-head">
+      <img src="https://ui-avatars.com/api/?name=Nova+Bot&background=14151F&color=fff&bold=true&size=64" alt="">
+      <div>
+        <span class="chat-name">Nova Assistant</span>
+        <span class="chat-status">● Online</span>
+      </div>
+      <button class="icon-btn" id="chatClose" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <div class="chat-panel-body">
+      <div class="chat-msg bot">Hi! What can I do for you?</div>
+    </div>
+    <div class="chat-panel-input">
+      <input type="text" placeholder="Type a message…">
+      <button class="chat-send" aria-label="Send">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script src="admin.js"></script>
+</body>
+</html>
