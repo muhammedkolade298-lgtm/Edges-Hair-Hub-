@@ -35,8 +35,68 @@ function showReview() { testimonial.innerHTML = `<div class="stars">★★★★
 document.querySelector('#prevReview').addEventListener('click', () => { reviewIndex = (reviewIndex - 1 + reviews.length) % reviews.length; showReview(); });
 document.querySelector('#nextReview').addEventListener('click', () => { reviewIndex = (reviewIndex + 1) % reviews.length; showReview(); });
 
-// Contact form demo: ready to connect to email or a CRM endpoint.
-document.querySelector('#contactForm').addEventListener('submit', event => { event.preventDefault(); document.querySelector('#formStatus').textContent = 'Thank you — your enquiry has been received. We will be in touch shortly.'; event.target.reset(); });
+// --- Contact / booking form -------------------------------------------
+// Sends the enquiry to Formspree AND logs it to localStorage so it shows
+// up in the admin dashboard's Inbox page (admin.html reads the same key).
+//
+// TODO: replace with your real Formspree endpoint, e.g.
+// https://formspree.io/f/abcdwxyz
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/meeydvlk';
+const APPOINTMENTS_KEY = 'edgesHairHub_appointments';
+
+const contactForm = document.querySelector('#contactForm');
+const formStatus = document.querySelector('#formStatus');
+
+function saveAppointment(entry) {
+  let list = [];
+  try { list = JSON.parse(localStorage.getItem(APPOINTMENTS_KEY) || '[]'); } catch { list = []; }
+  list.push(entry);
+  localStorage.setItem(APPOINTMENTS_KEY, JSON.stringify(list));
+}
+
+contactForm.addEventListener('submit', async event => {
+  event.preventDefault();
+
+  const formData = new FormData(contactForm);
+  const entry = {
+    id: `apt_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
+    name: (formData.get('name') || '').toString().trim(),
+    email: (formData.get('email') || '').toString().trim(),
+    service: formData.get('service') || '',
+    wig: formData.get('wig') || '',
+    color: formData.get('color') || '',
+    length: formData.get('length') || '',
+    type: formData.get('type') || '',
+    message: (formData.get('message') || '').toString().trim(),
+    createdAt: Date.now(),
+    read: false,
+    dismissed: false
+  };
+
+  const submitButton = contactForm.querySelector('button[type="submit"]');
+  submitButton.disabled = true;
+  formStatus.textContent = 'Sending your enquiry…';
+
+  try {
+    const response = await fetch(FORMSPREE_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: formData
+    });
+
+    if (!response.ok) throw new Error('Formspree request failed');
+
+    saveAppointment(entry);
+    formStatus.textContent = 'Thank you — your enquiry has been received. We will be in touch shortly.';
+    contactForm.reset();
+  } catch (error) {
+    // Still log locally so the request isn't lost even if email delivery failed.
+    saveAppointment(entry);
+    formStatus.textContent = 'Your enquiry was saved, but the email notification failed to send. We will still follow up.';
+  } finally {
+    submitButton.disabled = false;
+  }
+});
 
 const backTop = document.querySelector('#backTop');
 window.addEventListener('scroll', () => backTop.classList.toggle('show', window.scrollY > 500), {passive:true});
