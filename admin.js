@@ -202,6 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const fields = source.fields || {};
     const name = source.name || fields.name || 'Unnamed request';
     const email = source.email || fields.email || '';
+    const number = source.number || fields.number || '';
     const service = source.service || fields.service || '';
     const wig = source.wig || fields.wig || '';
     const color = source.color || fields.color || '';
@@ -214,6 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
       id: source.id || `appointment_${Date.now()}_${Math.random().toString(36).slice(2,8)}`,
       name,
       email,
+      number,
       service,
       wig,
       color,
