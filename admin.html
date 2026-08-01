@@ -12,7 +12,34 @@
 </head>
 <body>
 
-<div class="app">
+<div id="adminLoginPage" class="login-page">
+  <div class="admin-login-card">
+    <div class="brand" style="padding: 0 0 18px; gap: 12px;">
+      <span class="brand-mark">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 20V4l16 16V4" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      <div>
+        <span class="brand-name" style="color: var(--text);">Nova</span>
+      </div>
+    </div>
+    <h1>Admin sign in</h1>
+    <p>Use your admin account to access the dashboard.</p>
+    <form id="adminLoginForm">
+      <label>
+        <span>Email</span>
+        <input type="email" name="email" placeholder="admin@gmail.com" required>
+      </label>
+      <label>
+        <span>Password</span>
+        <input type="password" name="password" placeholder="password" required>
+      </label>
+      <button type="submit" class="button gold-button">Log in</button>
+      <p id="adminLoginStatus" class="form-status" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</div>
+
+<div class="app hidden" id="adminApp">
 
   <!-- SIDEBAR -->
   <aside class="sidebar" id="sidebar">
@@ -76,8 +103,8 @@
         <div class="user-chip" id="userChip" aria-haspopup="true" aria-expanded="false">
           <img src="https://ui-avatars.com/api/?name=Priya+Sen&background=5B5FEF&color=fff&bold=true&size=64" alt="">
           <div class="user-chip-text">
-            <span class="user-name">Priya Sen</span>
-            <span class="user-role">Product Designer</span>
+            <span class="user-name">Kolade Ridwan</span>
+            <span class="user-role">Business Manager</span>
           </div>
           <svg viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
@@ -204,7 +231,7 @@
 
           <ul class="message-list">
             <li class="message-item">
-              <img src="https://ui-avatars.com/api/?name=Mirchi+Rao&background=FF6B6B&color=fff&bold=true&size=64" alt="">
+              <img src="https://ui-avatars.com/api/?name=C+W&background=FF6B6B&color=fff&bold=true&size=64" alt="">
               <div class="message-body">
                 <div class="message-top"><span class="message-name">Chioma Williams</span><span class="message-time">30m</span></div>
                 <p>Interested in the 24-inch Bone Straight Wig…</p>
@@ -212,7 +239,7 @@
               <span class="status-dot online"></span>
             </li>
             <li class="message-item">
-              <img src="https://ui-avatars.com/api/?name=Mohan+Iyer&background=3AA0FF&color=fff&bold=true&size=64" alt="">
+              <img src="https://ui-avatars.com/api/?name=G+O&background=3AA0FF&color=fff&bold=true&size=64" alt="">
               <div class="message-body">
                 <div class="message-top"><span class="message-name">Grace O.</span><span class="message-time">1h</span></div>
                 <p>Can I book a Wig installation for saturday…</p>
@@ -220,7 +247,7 @@
               <span class="status-dot online"></span>
             </li>
             <li class="message-item">
-              <img src="https://ui-avatars.com/api/?name=Alex+Chen&background=FFB020&color=fff&bold=true&size=64" alt="">
+              <img src="https://ui-avatars.com/api/?name=S+E&background=FFB020&color=fff&bold=true&size=64" alt="">
               <div class="message-body">
                 <div class="message-top"><span class="message-name">Sarah E.</span><span class="message-time">450m</span></div>
                 <p>I want to order a Deep Wave 20-inch Wig…</p>
@@ -228,7 +255,7 @@
               <span class="status-dot"></span>
             </li>
             <li class="message-item">
-              <img src="https://ui-avatars.com/api/?name=Priya+Nair&background=00C2A8&color=fff&bold=true&size=64" alt="">
+              <img src="https://ui-avatars.com/api/?name=M+A&background=00C2A8&color=fff&bold=true&size=64" alt="">
               <div class="message-body">
                 <div class="message-top"><span class="message-name">Mary A.</span><span class="message-time">2h</span></div>
                 <p>Do you deliver to Abuja…</p>
@@ -296,7 +323,7 @@
               <input type="email" name="email" required>
             </label>
             <label>Role
-              <input type="text" name="role" readonly>
+              <input type="text" name="role" required>
             </label>
             <label>Phone
               <input type="tel" name="phone" placeholder="+234 906 427 9365">
