@@ -1160,54 +1160,135 @@ img {
   gap: 16px;
 }
 
+.profile-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  max-width: 780px;
+}
+
 .profile-panel .profile-card {
   display: flex;
   align-items: center;
-  gap: 16px;
-  margin-bottom: 24px;
+  gap: 18px;
+  padding: 20px 22px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(91, 95, 239, .04), rgba(58, 160, 255, .02));
 }
 
 .profile-panel .profile-card img {
-  width: 64px;
-  height: 64px;
+  width: 76px;
+  height: 76px;
   border-radius: 50%;
+  border: 3px solid rgba(91, 95, 239, .1);
+}
+
+.profile-panel .profile-card h3 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  margin-bottom: 4px;
+}
+
+.profile-panel .profile-card p {
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.settings-panel {
+  max-width: 620px;
 }
 
 .account-form {
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  max-width: 420px;
+  gap: 18px;
+  max-width: 540px;
 }
 
 .account-form label {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
   font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
 }
 
 .account-form input[type="text"],
 .account-form input[type="email"],
 .account-form input[type="tel"] {
-  padding: 10px 12px;
-  border-radius: 8px;
-  border: 1px solid rgba(120, 120, 140, .25);
-  background: transparent;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(120, 120, 140, .2);
+  background: rgba(245, 246, 251, .8);
   font-family: inherit;
   font-size: 14px;
+  transition: border-color .15s ease, box-shadow .15s ease, background .15s ease;
+}
+
+.account-form input[type="text"]:focus,
+.account-form input[type="email"]:focus,
+.account-form input[type="tel"]:focus {
+  outline: none;
+  border-color: rgba(91, 95, 239, .8);
+  box-shadow: 0 0 0 4px rgba(91, 95, 239, .09);
+  background: #fff;
 }
 
 .checkbox-label {
   flex-direction: row !important;
   justify-content: space-between;
   align-items: center;
+  gap: 18px;
+  padding: 14px 16px;
+  border: 1px solid rgba(120, 120, 140, .16);
+  border-radius: 12px;
+  background: rgba(245, 246, 251, .6);
+}
+
+.checkbox-label span {
+  font-weight: 500;
+  color: var(--text);
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary);
+  cursor: pointer;
+}
+
+.button.gold-button {
+  width: fit-content;
+  min-width: 160px;
+  padding: 12px 18px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--primary), #6E72F5);
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 12px 22px -10px rgba(91, 95, 239, .75);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.button.gold-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 28px -12px rgba(91, 95, 239, .8);
 }
 
 .form-status {
   font-size: 13px;
   min-height: 18px;
   opacity: .8;
+  color: var(--text-muted);
+}
+
+.form-status.error {
+  color: #d14d4d;
+}
+
+.form-status.success {
+  color: #218a5f;
 }
 
 /* --- Dark mode (Settings toggle) --- */
@@ -1320,10 +1401,9 @@ body.dark-mode .inbox-item.unread {
   .stat-grid {
     grid-template-columns: 1fr;
   }
-  .panel {
-   display: none;
-  }
-
+.grid-2col {
+        grid-template-columns: 100%;
+    }
   .content {
     padding: 18px;
   }
