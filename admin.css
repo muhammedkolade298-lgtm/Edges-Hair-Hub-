@@ -661,6 +661,14 @@ img {
   padding: 22px;
 }
 
+.chart-read {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: 22px;
+}
+
 .panel-head {
   display: flex;
   align-items: flex-start;
@@ -1240,6 +1248,10 @@ body.dark-mode .inbox-item.unread {
     width: 100%;
   }
 
+  .chart-read {
+    width: 100%;
+  }
+
   .content {
     padding: 18px;
   }
@@ -1253,6 +1265,13 @@ body.dark-mode .inbox-item.unread {
     align-items: flex-start;
   }
 }
+
+@media (max-width:400px) {
+  .chart-read {
+    max-width: 400px;
+  }
+}
+
 
 @media (prefers-reduced-motion: reduce) {
   * {
