@@ -141,6 +141,90 @@ img {
   background: var(--sidebar-hover);
   color: #fff;
 }
+/* ============ UTILITY ============ */
+.hidden {
+  display: none !important;
+}
+
+/* ============ ADMIN LOGIN PAGE ============ */
+#adminLoginPage {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  padding: 20px;
+}
+
+.admin-login-card {
+  width: 100%;
+  max-width: 380px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: 32px;
+}
+
+.admin-login-card h1 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.admin-login-card p {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+
+#adminLoginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+#adminLoginForm label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+#adminLoginForm input[type="email"],
+#adminLoginForm input[type="password"] {
+  padding: 11px 13px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  font-size: 14px;
+  transition: border-color .15s, box-shadow .15s;
+}
+
+#adminLoginForm input[type="email"]:focus,
+#adminLoginForm input[type="password"]:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px var(--primary-light);
+}
+
+#adminLoginForm button[type="submit"] {
+  margin-top: 4px;
+  background: var(--primary);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px;
+  border-radius: 11px;
+  transition: transform .15s, box-shadow .15s;
+}
+
+#adminLoginForm button[type="submit"]:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
 
 .nav {
   display: flex;
@@ -1237,7 +1321,7 @@ body.dark-mode .inbox-item.unread {
     grid-template-columns: 1fr;
   }
   .panel {
-    width: 71%;
+   display: none;
   }
 
   .content {
