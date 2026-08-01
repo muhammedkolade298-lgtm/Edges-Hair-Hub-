@@ -12,22 +12,19 @@
 </head>
 <body>
 
-<div id="adminLoginPage" class="admin-login-page">
+<div id="adminLoginPage" class="login-page">
   <div class="admin-login-card">
-    <div class="admin-login-brand">
+    <div class="brand" style="padding: 0 0 18px; gap: 12px;">
       <span class="brand-mark">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 20V4l16 16V4" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </span>
       <div>
-        <span class="brand-name">Nova</span>
-        <p>Admin access</p>
+        <span class="brand-name" style="color: var(--text);">Nova</span>
       </div>
     </div>
-
-    <h1>Sign in</h1>
-    <p class="admin-login-copy">Use your admin account to continue to the dashboard.</p>
-
-    <form id="adminLoginForm" class="admin-login-form">
+    <h1>Admin sign in</h1>
+    <p>Use your admin account to access the dashboard.</p>
+    <form id="adminLoginForm">
       <label>
         <span>Email</span>
         <input type="email" name="email" placeholder="admin@gmail.com" required>

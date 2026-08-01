@@ -2,18 +2,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const ADMIN_EMAIL = 'admin@gmail.com';
   const ADMIN_PASSWORD = 'Admin123';
+  const ADMIN_SESSION_KEY = 'edgesHairHub_admin_session';
   const adminApp = document.getElementById('adminApp');
   const adminLoginPage = document.getElementById('adminLoginPage');
   const adminLoginForm = document.getElementById('adminLoginForm');
   const adminLoginStatus = document.getElementById('adminLoginStatus');
 
-  if (!adminLoginForm) {
-    console.warn('admin.js: #adminLoginForm not found in the DOM — check the id on your login <form>.');
-  }
-
   function setAdminAuthState(isAuthenticated) {
     if (adminApp) adminApp.classList.toggle('hidden', !isAuthenticated);
     if (adminLoginPage) adminLoginPage.classList.toggle('hidden', isAuthenticated);
+    if (isAuthenticated) {
+      localStorage.setItem(ADMIN_SESSION_KEY, 'authenticated');
+    } else {
+      localStorage.removeItem(ADMIN_SESSION_KEY);
+    }
   }
 
   adminLoginForm?.addEventListener('submit', event => {
@@ -21,10 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const formData = new FormData(adminLoginForm);
     const email = (formData.get('email') || '').toString().trim();
     const password = (formData.get('password') || '').toString();
-
-    if (!formData.has('email') || !formData.has('password')) {
-      console.warn('admin.js: form inputs are missing name="email" / name="password" attributes.');
-    }
 
     if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
       setAdminAuthState(true);
@@ -41,8 +39,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Always require login on load — no session is restored from a previous visit.
-  setAdminAuthState(false);
+  if (localStorage.getItem(ADMIN_SESSION_KEY) === 'authenticated') {
+    setAdminAuthState(true);
+  } else {
+    setAdminAuthState(false);
+  }
 
   // Sparkline bars
   document.querySelectorAll('.spark').forEach(spark => {
@@ -185,6 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- Inbox / appointment requests -----------------------------------------
   const APPOINTMENTS_KEY = 'edgesHairHub_appointments';
+  const FORMSPREE_FORM_ID = 'meeydvlk';
 
   function getAppointments() {
     try { return JSON.parse(localStorage.getItem(APPOINTMENTS_KEY) || '[]'); }
@@ -193,6 +195,69 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function saveAppointments(list) {
     localStorage.setItem(APPOINTMENTS_KEY, JSON.stringify(list));
+  }
+
+  function normalizeAppointment(raw) {
+    const source = raw || {};
+    const fields = source.fields || {};
+    const name = source.name || fields.name || 'Unnamed request';
+    const email = source.email || fields.email || '';
+    const service = source.service || fields.service || '';
+    const wig = source.wig || fields.wig || '';
+    const color = source.color || fields.color || '';
+    const length = source.length || fields.length || '';
+    const type = source.type || fields.type || '';
+    const message = source.message || fields.message || '';
+    const createdAt = Number(source.createdAt || source.created_at || Date.now());
+
+    return {
+      id: source.id || `appointment_${Date.now()}_${Math.random().toString(36).slice(2,8)}`,
+      name,
+      email,
+      service,
+      wig,
+      color,
+      length,
+      type,
+      message,
+      createdAt,
+      read: Boolean(source.read),
+      dismissed: Boolean(source.dismissed)
+    };
+  }
+
+  async function fetchFormspreeAppointments() {
+    try {
+      const response = await fetch(`https://formspree.io/f/${FORMSPREE_FORM_ID}/submissions`, {
+        method: 'GET',
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (!response.ok) throw new Error('Failed to load Formspree submissions');
+      const data = await response.json();
+      const submissions = Array.isArray(data) ? data : (data.submissions || []);
+
+      return submissions.map(submission => {
+        const fields = submission.fields || submission.data || {};
+        return normalizeAppointment({
+          id: submission.id,
+          name: fields.name || submission.name || 'Unnamed request',
+          email: fields.email || submission.email || '',
+          service: fields.service || '',
+          wig: fields.wig || '',
+          color: fields.color || '',
+          length: fields.length || '',
+          type: fields.type || '',
+          message: fields.message || '',
+          createdAt: submission.created_at || submission.createdAt || Date.now(),
+          read: false,
+          dismissed: false
+        });
+      });
+    } catch (error) {
+      console.warn('Formspree inbox fetch failed:', error);
+      return [];
+    }
   }
 
   function escapeHtml(str) {
@@ -212,11 +277,22 @@ document.addEventListener('DOMContentLoaded', () => {
   const inboxList = document.getElementById('inboxList');
   const inboxCount = document.getElementById('inboxCount');
 
-  function renderInbox() {
+  async function renderInbox() {
     if (!inboxList) return;
-    const appointments = getAppointments()
+
+    const localAppointments = getAppointments().map(normalizeAppointment);
+    const remoteAppointments = await fetchFormspreeAppointments();
+
+    const merged = [...localAppointments, ...remoteAppointments];
+    const uniqueMap = new Map();
+    merged.forEach(item => {
+      if (!item || !item.id) return;
+      if (!uniqueMap.has(item.id)) uniqueMap.set(item.id, item);
+    });
+
+    const appointments = Array.from(uniqueMap.values())
       .filter(a => !a.dismissed)
-      .sort((a, b) => b.createdAt - a.createdAt);
+      .sort((a, b) => Number(b.createdAt) - Number(a.createdAt));
 
     const unread = appointments.filter(a => !a.read).length;
     if (inboxCount) {
@@ -283,6 +359,8 @@ document.addEventListener('DOMContentLoaded', () => {
     saveAppointments(list);
     renderInbox();
   });
+
+  renderInbox();
 
   updateInboxNavIndicator();
 
